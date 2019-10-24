@@ -1,5 +1,5 @@
 // Challenge 1
-// Write test cases for next 2 challenges. Also include tests for boundary conditions
+// Write test cases for next 3 challenges. Also include tests for boundary conditions
 // For this challenge, the input will be a (long) string.
 
 
