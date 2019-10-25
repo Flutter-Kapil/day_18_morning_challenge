@@ -24,13 +24,18 @@ List<List<String>> noStrangers(String line) {
   Map<String, int> wordCount = {};
   wordsList.forEach((wordX) {
     wordCount[wordX] = wordCount.containsKey(wordX) ? wordCount[wordX] + 1 : 1;
+//    print('word count for $wordX is ${wordCount[wordX]}');
+    wordCount.forEach((key, val) {
+      if (wordCount[key] >= 3) {
+        acqList.add(key);
+//        print('acqList is $acqList');
+      }
+    });
   });
   print(wordCount);
   wordCount.forEach((key, val) {
     if (wordCount[key] >= 5) {
       friendsList.add(key);
-    } else if (wordCount[key] >= 3) {
-      acqList.add(key);
     }
   });
 //  print([acqList.toSet().toList(), friendsList.toSet().toList()]);

@@ -7,7 +7,7 @@ void main() {
         noStrangers(
             "See Spot run. See Spot jump. Spot likes jumping. See Spot fly."),
         [
-          ["spot", "see"],
+          ["Spot", "See"],
           []
         ]);
   });
