@@ -16,24 +16,25 @@
 // noStrangers("See Spot run. See Spot jump. Spot likes jumping. See Spot fly.")
 // ➞ [["spot", "see"], []]
 /// "see" was encountered first but "spot" became an acquaintance earlier.
-List<List> noStrangers(String line) {
-  //remove all .
-  line = line.replaceAll('.', '');
-  //split the string into list of words
-  List listFromLine = line.split(" ");
-  List<List> finalList = [[], []];
-  //count how many times each word occur in a list and add them to finalList
-  for (int i = 0; i < listFromLine.length; i++) {
-    if (splitNCount(listFromLine, i) >= 5) {
-      finalList[1].add(listFromLine[i]);
-    } else if (splitNCount(listFromLine, i) >= 3) {
-      finalList[0].add(listFromLine[i]);
+List<List<String>> noStrangers(String line) {
+  String toCheck = CleanString(line);
+  List wordsList = toCheck.split(' ');
+  List<String> acqList = [];
+  List<String> friendsList = [];
+  Map<String, int> wordCount = {};
+  wordsList.forEach((wordX) {
+    wordCount[wordX] = wordCount.containsKey(wordX) ? wordCount[wordX] + 1 : 1;
+  });
+  print(wordCount);
+  wordCount.forEach((key, val) {
+    if (wordCount[key] >= 5) {
+      friendsList.add(key);
+    } else if (wordCount[key] >= 3) {
+      acqList.add(key);
     }
-  }
-  //make sure both the lists in finalList contains unique items only
-  finalList[0] = finalList[0].toSet().toList();
-  finalList[1] = finalList[1].toSet().toList();
-  return finalList;
+  });
+//  print([acqList.toSet().toList(), friendsList.toSet().toList()]);
+  return [acqList.toSet().toList(), friendsList.toSet().toList()];
 }
 
 int splitNCount(List listFromLine, int n) {
@@ -58,10 +59,14 @@ int splitNCount(List listFromLine, int n) {
 bool doesRhyme(String x, String y) {
   x = CleanString(x);
   y = CleanString(y);
+  print(x);
+  print(y);
   List splitXString = x.split(' ');
   List splitYString = y.split(' ');
   List xVowels = IndexOfVowels(splitXString.last);
+//  print(xVowels);
   List yVowels = IndexOfVowels(splitYString.last);
+//  print(yVowels);
   if (AreListEqual(xVowels, yVowels)) {
     return true;
   } else {
@@ -70,7 +75,7 @@ bool doesRhyme(String x, String y) {
 }
 
 String CleanString(String x) {
-  return x.split('.').toString().split('!').toString().split(',').toString();
+  return x.replaceAll('.', '').replaceAll('!', '').replaceAll(',', '');
 }
 
 List IndexOfVowels(String x) {
@@ -81,7 +86,7 @@ List IndexOfVowels(String x) {
         x[i] == 'i' ||
         x[i] == 'o' ||
         x[i] == 'u') {
-      indexList.add(i);
+      indexList.add(x[i]);
     }
   }
   return indexList;
