@@ -122,7 +122,7 @@ bool canFind(List list1, List list2) {
 bool CanFindInWord(List x, String y) {
   for (int i = 0; i < x.length; i++) {
     if (y.contains(x[i])) {
-      print('found ${x[i]} in $y');
+//      print('found ${x[i]} in $y');
       return true;
     }
   }
@@ -133,6 +133,5 @@ main() {
   print(noStrangers(
       "See Spot run. See Spot jump. Spot likes jumping. See Spot fly."));
   print(doesRhyme("Sam I am!", "Green eggs and ham."));
-  print(canFind(["at", "be", "th", "au", 'xy'], ["beautiful", "the", "hat"]));
-//  print(CanFindInWord(["at", "be", "th", "au"], 'hat'));
+  print(canFind(["at", "be", "th", "au"], ["beautiful", "the", "hat", 'xyz']));
 }
